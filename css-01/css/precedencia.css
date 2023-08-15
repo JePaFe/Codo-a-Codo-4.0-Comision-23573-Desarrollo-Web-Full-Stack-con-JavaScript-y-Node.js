@@ -1,0 +1,23 @@
+/* #parrafo-tres {
+  color: green;
+} */
+
+section p {
+  color: red;
+}
+
+/* .parrafo-azul {
+  color: blue;
+} */
+
+/* .logo {
+  color: red !important;
+} */
+
+.articulo p {
+  color: green;
+}
+
+#seccion .destacado span {
+  color: blue;
+}

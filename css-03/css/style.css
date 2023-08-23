@@ -1,0 +1,26 @@
+body {
+  font-size: 20px;
+  min-height: 100vh;
+}
+
+/* main {
+  font-size: 1.5em;
+} */
+
+p {
+  font-size: 1.5rem;
+}
+
+span {
+  font-size: 1.5rem;
+}
+
+main {
+  background-color: red;
+  width: 50%;
+}
+
+section {
+  background-color: green;
+  width: 50vw;
+}

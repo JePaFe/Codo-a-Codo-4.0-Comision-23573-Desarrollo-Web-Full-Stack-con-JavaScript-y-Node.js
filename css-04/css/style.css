@@ -1,0 +1,116 @@
+h1 {
+  color: red;
+  /* transition: color 2s, font-size 3s; */
+  /* transition-property: color, font-size;
+  transition-duration: 2s, 3s;
+  transition-delay: 2s, 0; */
+  transition: transform 3s;
+  transform-origin: center;
+}
+
+h1:hover {
+  color: green;
+  /* font-size: 3em; */
+  transform: rotate(-180deg);
+}
+
+h2 {
+  animation-name: color;
+  animation-duration: 2s;
+  /* animation-iteration-count: infinite; */
+  /* animation-direction: alternate; */
+  animation-fill-mode: forwards;
+}
+
+@keyframes color {
+  from {
+    color: red;
+  }
+  to {
+    color: yellow;
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:link {
+  color: aqua;
+}
+
+a:visited {
+  color: fuchsia;
+}
+
+a:active {
+  color: chocolate;
+}
+
+input[type="text"] {
+  padding: 5px 10px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border: none;
+  box-shadow: 3px 3px 5px aqua;
+  border-radius: 5px;
+}
+
+input[type="checkbox"]:checked {
+  box-shadow: 3px 3px 5px aqua;
+}
+
+/* section p:first-child {
+  color: blue;
+  font-size: 2em;
+} */
+
+/* section p:nth-child(even) {
+  color: orange;
+} */
+
+/* section p:last-child {
+  color: red;
+} */
+
+/* section p:first-of-type {
+  color: blue;
+  font-size: 2em;
+} */
+
+/* p:first-of-type::first-letter {
+  font-size: 3em;
+  color: fuchsia;
+}
+
+section p:first-of-type:first-line {
+  background-color: fuchsia;
+  color: antiquewhite;
+} */
+
+.primer-palabra::first-letter {
+  font-size: 3em;
+  color: fuchsia;
+}
+
+.primer-palabra {
+  background-color: aqua;
+  display: inline-block;
+}
+
+/* p::selection {
+  background-color: fuchsia;
+  color: blanchedalmond;
+} */
+
+h1::before {
+  content: "-";
+  color: brown;
+}
+
+h1::after {
+  content: "...";
+  color: red;
+}

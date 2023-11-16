@@ -1,0 +1,24 @@
+<%- contentFor('title') %> Tareas <%- contentFor('styles') %>
+<%-contentFor('body') %>
+<main>
+  <h1>Tareas</h1>
+
+  <h2>Crear tarea</h2>
+  
+  <form action="/" method="post">
+    <div>
+      <label for="title">Nombre: </label>
+      <input type="text" name="title" id="title" />
+    </div>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <h2>Listado de tareas</h2>
+
+  <ul>
+    <% tareas.forEach(tarea => { %> <%- include('partials/item', { tarea }) %>
+    <% }) %>
+  </ul>
+</main>
+
+<%- contentFor('scripts') %>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <h1>Listado de productos</h1>
+
+      <a href="/admin/productos/create">Crear</a>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% productos.forEach(producto => { %>
+          <tr>
+            <td><%= producto.id %></td>
+            <td><%= producto.nombre %></td>
+            <td>$ <%= producto.precio %></td>
+            <td>
+              <img
+                width="100"
+                src="/uploads/productos/producto_<%= producto.id %>.jpg"
+                alt="<%= producto.nombre %>"
+              />
+            </td>
+            <td>
+              <a href="/admin/productos/<%= producto.id %>/edit">Editar</a> |
+              <form
+                class="form-delete"
+                style="display: inline-block"
+                action="/admin/productos/<%= producto.id %>?_method=DELETE"
+                method="post"
+              >
+                <button type="submit">Borrar</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </main>
+    <%- include('../partials/footer') %>
+
+    <script>
+      document.addEventListener("click", (event) => {
+        if (event.target.closest("form").classList.contains("form-delete")) {
+          event.preventDefault();
+
+          const borrar = confirm("¿Esta seguro?");
+
+          if (borrar) {
+            event.target.closest("form").submit();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categorías</title>
+  </head>
+  <body>
+    <%- include('../../partials/header') %>
+    <main>
+      <h1>Crear categoría</h1>
+
+      <% if (typeof errors != 'undefined') { %>
+      <ul>
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+      <% } %>
+
+      <form action="/admin/categorias" method="post">
+        <div>
+          <label for="nombre">Nombre: </label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            value="<%= typeof values != 'undefined' ? values.nombre : '' %>"
+            required
+            minlength="3"
+          />
+        </div>
+        <button type="submit">Guardar</button>
+      </form>
+    </main>
+    <%- include('../../partials/footer') %>
+  </body>
+</html>

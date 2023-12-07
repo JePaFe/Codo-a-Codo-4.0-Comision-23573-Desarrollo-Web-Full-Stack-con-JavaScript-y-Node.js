@@ -54,14 +54,18 @@ const store = async (req, res) => {
     // console.log(producto);
 
     if (producto && req.file) {
+      const extname = path.extname(req.file.originalname);
       sharp(req.file.buffer)
         .resize(300)
         .toFile(
           path.resolve(
             __dirname,
-            `../../../public/uploads/productos/producto_${producto.id}.jpg`
+            `../../../public/uploads/productos/producto_${producto.id}${extname}`
           )
         );
+
+      producto.imagen = "miimagen.jpg";
+      producto.save();
     }
 
     res.redirect("/admin/productos");
@@ -88,7 +92,7 @@ const edit = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  console.log(req.params, req.body);
+  console.log(req.params, req.body, path.extname(req.file.originalname));
 
   const errors = validationResult(req);
 
@@ -114,13 +118,14 @@ const update = async (req, res) => {
     });
 
     if (affected[0] == 1) {
+      const extname = path.extname(req.file.originalname);
       if (req.file) {
         sharp(req.file.buffer)
           .resize(300)
           .toFile(
             path.resolve(
               __dirname,
-              `../../../public/uploads/productos/producto_${req.params.id}.jpg`
+              `../../../public/uploads/productos/producto_${req.params.id}${extname}`
             )
           );
       }

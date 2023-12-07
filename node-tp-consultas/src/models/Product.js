@@ -12,6 +12,10 @@ const Product = sequelize.define("Product", {
     type: DataTypes.FLOAT,
     allowNull: true,
   },
+  imagen: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });
 
 Product.belongsTo(Category);

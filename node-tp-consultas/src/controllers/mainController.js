@@ -10,6 +10,20 @@ const index = async (req, res) => {
   }
 };
 
+const item = async (req, res) => {
+  console.log(req.query);
+  try {
+    const producto = await product.findByPk(req.params.id, {
+      include: "Category",
+    });
+    res.render("item", { producto });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   index,
+  item,
 };

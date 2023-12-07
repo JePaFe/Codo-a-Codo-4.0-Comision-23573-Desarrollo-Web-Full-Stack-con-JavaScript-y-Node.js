@@ -9,14 +9,8 @@
   <body>
     <%- include('partials/header') %>
     <main>
-      <h1>Inicio</h1>
-      <p><%= mensaje %></p>
-
-      <ul>
-        <% productos.forEach(producto => { %>
-        <li><a href="/item/<%= producto.id %>"><%= producto.nombre %></a></li>
-        <% }) %>
-      </ul>
+      <h1><%= producto.nombre %></h1>
+      <p><%= producto.Category.nombre %></p>
     </main>
     <%- include('partials/footer') %>
   </body>

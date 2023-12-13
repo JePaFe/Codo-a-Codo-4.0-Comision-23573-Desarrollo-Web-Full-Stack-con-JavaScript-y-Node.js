@@ -41,6 +41,7 @@ const store = async (req, res) => {
 };
 
 const edit = async (req, res) => {
+  console.log(req.query, req.params);
   try {
     const categoria = await model.findByPk(req.params.id);
 

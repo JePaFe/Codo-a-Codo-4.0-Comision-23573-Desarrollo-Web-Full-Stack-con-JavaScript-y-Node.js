@@ -18,9 +18,7 @@ const postRegister = async (req, res) => {
 
   try {
     const user = await model.create(req.body);
-
-    console.log(req.body, user);
-    res.send("Registrado");
+    res.redirect("/");
   } catch (error) {
     console.log(error);
     res.send(error);

@@ -3,7 +3,7 @@ const sequelize = require("./connection");
 
 const User = require("./User");
 
-const Cart = sequelize.define("Cart", {});
+const Cart = sequelize.define("Cart");
 
 Cart.belongsTo(User);
 

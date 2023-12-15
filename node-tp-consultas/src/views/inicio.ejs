@@ -4,20 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio</title>
-    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <%- include('partials/header') %>
+    <%- include('partials/header', {session}) %>
     <main>
       <h1>Inicio</h1>
       <p><%= mensaje %></p>
 
+      <input type="search" name="" id="searchId" />
+
       <ul>
         <% productos.forEach(producto => { %>
-        <li><a href="/item/<%= producto.id %>"><%= producto.nombre %></a></li>
+        <li><%= producto.nombre %></li>
         <% }) %>
       </ul>
     </main>
     <%- include('partials/footer') %>
+
+    <script>
+      const search = document.querySelector("#searchId");
+      search.addEventListener("input", (event) => {
+        console.log(event.target.value);
+      });
+    </script>
   </body>
 </html>

@@ -30,14 +30,22 @@ const isLogin = (req, res, next) => {
   next();
 };
 
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
+
 // app.use((req, res, next) => {
 //   res.send("Sitio en mantenimiento");
 // });
 
 const sequelize = require("./src/models/connection");
 
+require("./src/models/Cart");
+require("./src/models/CartItem");
+
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/src/views"));
+app.set("views", "./src/views");
 
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
@@ -52,6 +60,7 @@ app.use(mainRoutes);
 app.use(
   "/admin/categorias",
   isLogin,
+  // isAdmin,
   require("./src/routes/admin/categoriasRoutes")
 );
 
@@ -69,7 +78,7 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, async () => {
   try {
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
   } catch (error) {
     console.log(error);
   }

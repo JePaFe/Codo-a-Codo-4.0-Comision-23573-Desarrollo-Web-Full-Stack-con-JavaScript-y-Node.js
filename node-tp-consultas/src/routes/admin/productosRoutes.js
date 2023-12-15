@@ -14,7 +14,7 @@ const validations = [
     .isLength({ min: 3 })
     .withMessage("Tiene que tener 3 caracteres"),
   body("precio").not().isEmpty().withMessage("El precio es obligatorio"),
-  body("CategoryId").not().isEmpty().withMessage("El categoría es obligatorio"),
+  body("CategoryId").not().isEmpty().withMessage("La categoría es obligatoria"),
 ];
 
 const controller = require("../../controllers/admin/productoController");
@@ -22,6 +22,7 @@ const controller = require("../../controllers/admin/productoController");
 // CRUD = Create, Read, Update, Delete
 
 router.get("/", controller.index);
+// router.get("/:id", controller.show);
 
 router.get("/create", controller.create);
 router.post("/", upload.single("imagen"), validations, controller.store);

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Productos</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
@@ -19,7 +20,6 @@
             <th>#</th>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Imagen</th>
             <th>Categoría</th>
             <th></th>
           </tr>
@@ -30,16 +30,10 @@
             <td><%= producto.id %></td>
             <td><%= producto.nombre %></td>
             <td>$ <%= producto.precio %></td>
-            <td>
-              <img
-                width="100"
-                src="/uploads/productos/producto_<%= producto.id %>.webp"
-                alt="<%= producto.nombre %>"
-              />
-            </td>
             <td><%= producto.Category.nombre %></td>
             <td>
-              <a href="/admin/productos/<%= producto.id %>/edit">Editar</a> |
+              <a href="/admin/productos/<%= producto.id %>/edit">Editar</a>
+              |
               <form
                 class="form-delete"
                 style="display: inline-block"
@@ -55,6 +49,21 @@
       </table>
     </main>
     <%- include('../../partials/footer') %>
+
+    <div id="app">{{ message }}</div>
+
+    <script>
+      const { createApp, ref } = Vue;
+
+      createApp({
+        setup() {
+          const message = ref("Hello vue!");
+          return {
+            message,
+          };
+        },
+      }).mount("#app");
+    </script>
 
     <script>
       document.addEventListener("submit", (event) => {

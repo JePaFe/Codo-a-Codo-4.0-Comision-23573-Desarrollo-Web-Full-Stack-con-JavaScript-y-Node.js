@@ -18,7 +18,7 @@ const create = (req, res) => {
 };
 
 const store = async (req, res) => {
-  console.log(req.body, req.file);
+  console.log(req.body);
 
   const errors = validationResult(req);
 
@@ -36,23 +36,22 @@ const store = async (req, res) => {
     res.redirect("/admin/categorias");
   } catch (error) {
     console.log(error);
-    res.status(500).send(error);
+    res.send(error);
   }
 };
 
 const edit = async (req, res) => {
-  console.log(req.query, req.params);
   try {
     const categoria = await model.findByPk(req.params.id);
 
     if (categoria) {
       res.render("admin/categorias/edit", { values: categoria });
     } else {
-      res.status(404).send("El categoria no existe");
+      res.status(404).send("No existe el categoria");
     }
   } catch (error) {
     console.log(error);
-    res.status(500).send(error);
+    res.send(error);
   }
 };
 
@@ -69,20 +68,17 @@ const update = async (req, res) => {
   }
 
   try {
-    const affected = await model.update(req.body, {
+    const count = await model.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
+    // console.log(count);
 
-    if (affected[0] == 1) {
-      res.redirect("/admin/categorias");
-    } else {
-      res.status(500).send("Error al actualizar el categoria");
-    }
+    res.redirect("/admin/categorias");
   } catch (error) {
     console.log(error);
-    res.status(500).send(error);
+    res.send(error);
   }
 };
 
@@ -90,17 +86,17 @@ const destroy = async (req, res) => {
   console.log(req.params);
 
   try {
-    const result = await model.destroy({
+    const destroyed = await model.destroy({
       where: {
         id: req.params.id,
       },
     });
-    // console.log(result);
+    // console.log(destroyed);
 
     res.redirect("/admin/categorias");
   } catch (error) {
     console.log(error);
-    res.status(500).send(error);
+    res.send(error);
   }
 };
 

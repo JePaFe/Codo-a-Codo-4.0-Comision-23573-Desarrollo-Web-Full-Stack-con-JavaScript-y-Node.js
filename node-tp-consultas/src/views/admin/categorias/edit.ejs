@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Categorías</title>
+    <title>Inicio</title>
   </head>
   <body>
     <%- include('../../partials/header') %>
     <main>
-      <h1>Editar categoría</h1>
+      <h1>Editar Categoría</h1>
 
       <% if (typeof errors != 'undefined') { %>
       <ul>
@@ -29,8 +29,6 @@
             id="nombre"
             name="nombre"
             value="<%= typeof values != 'undefined' ? values.nombre : '' %>"
-            required
-            minlength="3"
           />
         </div>
         <button type="submit">Guardar</button>

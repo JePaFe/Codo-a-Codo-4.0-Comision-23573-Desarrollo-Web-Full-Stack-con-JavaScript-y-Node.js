@@ -1,10 +1,12 @@
-const { Router } = require("express");
-const router = Router();
+const express = require("express");
+const { Model } = require("sequelize");
+const router = express.Router();
 
 const model = require("../models/User");
 
 const { body } = require("express-validator");
 
+let duplicado = "";
 const registerValidations = [
   body("email")
     .isEmail()
@@ -21,6 +23,7 @@ const registerValidations = [
 
           if (user) {
             console.log(user);
+            duplicado = `Dirección de ${value} duplicada`;
             return reject();
           } else {
             return resolve();
@@ -30,7 +33,7 @@ const registerValidations = [
         }
       });
     })
-    .withMessage("Dirección de correo electrónico duplicada"),
+    .withMessage(duplicado),
   body("password")
     .isStrongPassword({
       minLength: 6,

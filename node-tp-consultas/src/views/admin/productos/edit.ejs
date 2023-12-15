@@ -30,9 +30,10 @@
             id="nombre"
             name="nombre"
             value="<%= typeof values != 'undefined' ? values.nombre : '' %>"
-            required
-            minlength="3"
           />
+        </div>
+        <div>
+          <textarea name="" id="" cols="30" rows="10"></textarea>
         </div>
         <div>
           <label for="precio">Precio: </label>
@@ -41,8 +42,7 @@
             id="precio"
             name="precio"
             value="<%= typeof values != 'undefined' ? values.precio : '' %>"
-            required
-            min="1"
+
           />
         </div>
         <div>
@@ -50,7 +50,10 @@
           <select name="CategoryId" id="CategoryId">
             <option value=""></option>
             <% categorias.forEach(categoria => { %>
-            <option value="<%= categoria.id %>" <%= categoria.id == values.CategoryId ? "selected" : "" %> ><%= categoria.nombre %></option>
+            <option 
+              value="<%= categoria.id %>" 
+              <%= categoria.id == values.CategoryId ? "selected" : "" %>
+            ><%= categoria.nombre %></option>
             <% }) %>
           </select>
         </div>
@@ -59,7 +62,7 @@
           <input type="file" id="imagen" name="imagen" accept="image/*" />
           <div>
             <img
-              width="100"
+              width="50"
               src="/uploads/productos/producto_<%= values.id %>.webp"
               alt="<%= values.nombre %>"
             />

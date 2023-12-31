@@ -25,7 +25,12 @@ router.get("/", controller.index);
 // router.get("/:id", controller.show);
 
 router.get("/create", controller.create);
-router.post("/", upload.single("imagen"), validations, controller.store);
+router.post(
+  "/",
+  upload.fields(["funko", "caja"]),
+  validations,
+  controller.store
+);
 
 router.get("/:id/edit", controller.edit);
 router.put("/:id", upload.single("imagen"), validations, controller.update);
